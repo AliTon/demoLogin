@@ -1,0 +1,29 @@
+body {
+    background-color:black ;
+}
+
+.loginform {
+    background-color: chartreuse;
+    width: 416px;
+    height: 180px;
+    margin-top: 30px;
+    margin-left: 429px;
+    padding-top: 40px;
+    padding-left: 130px;
+    border-bottom-right-radius: 139px;
+
+}
+
+.loginform input {
+    height: 38px;
+    width: 288px;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.loginform button {
+    height: 44px;
+    background-color: red;
+    font-size: 22px;
+    border-radius: 41px;
+    margin-left: 105px;}

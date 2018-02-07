@@ -1,0 +1,18 @@
+{
+  "name": "login",
+  "version": "1.0.0",
+  "description": "Login demo application",
+  "main": "client/index.js",
+  "scripts": {
+    "start": "webpack && webpack-dev-server --hot "
+  },
+  "author": "AliTon",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dev": "0.0.1",
+    "react-dom": "^15.5.3",
+    "webpack": "^2.3.3",
+    "webpack-dev-server": "^2.4.2"
+  }
+}
