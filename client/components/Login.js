@@ -9,9 +9,9 @@ class Login extends Component {
             email: "",
             password: "",
             errors: {
-                username: 'poxac4',
-                email: 'kjskj',
-                password: 'sssss'
+                username: '',
+                email: '',
+                password: ''
             }
 
         }
@@ -22,7 +22,7 @@ class Login extends Component {
 
         const rename =  new RegExp('/w{4,}d{2}[!,@,#,$,%,&]{1}/');
 
-        const emailRegex = new RegExp('/w{4,}d{2}[!,@,#,$,%,&]{1}/');
+        const emailRegExp =  /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 
         const  repass =  new RegExp('/\w{4,}\d{2}[!,@,#,$,%,&]{1}/');
 
@@ -42,10 +42,14 @@ class Login extends Component {
 
 
     onEmailChange(e){
+        const emailRegExp =  /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
         var email = e.target.value;
         this.setState({email:email})
-        console.log(email)
-        if(email == ""){ this.setState({errors:{email:'lracnel'}})}
+        if(!email.match(emailRegExp)){
+            this.setState({errors:{email:"Please Enter Valid Email"}});
+        }else {
+            this.setState({errors:{email:""}});
+        }
 
         }
 
@@ -68,7 +72,7 @@ class Login extends Component {
         <br/>
                 <input type="text"
                        placeholder="email"
-                       onBlur = {(e) => this.onEmailChange(e)}/>
+                       onChange = {(e) => this.onEmailChange(e)}/>
         <span>{this.state.errors.email} </span>
 
         <br/>
