@@ -9956,9 +9956,9 @@ var Login = function (_Component) {
             email: "",
             password: "",
             errors: {
-                username: 'poxac4',
-                email: 'kjskj',
-                password: 'sssss'
+                username: '',
+                email: '',
+                password: ''
             }
 
         };
@@ -9967,15 +9967,44 @@ var Login = function (_Component) {
     }
 
     _createClass(Login, [{
+        key: "onUserNameChange",
+        value: function onUserNameChange(e) {
+            var rename = /^[a-z0-9_-]{8}$/;
+            var name = e.target.value;
+            this.setState({ username: name });
+            if (!name.match(rename)) {
+                this.setState({ errors: { username: "Please Enter Valid username" } });
+            } else {
+                this.setState({ errors: { email: "" } });
+            }
+        }
+    }, {
+        key: "onEmailChange",
+        value: function onEmailChange(e) {
+            var emailRegExp = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+            var email = e.target.value;
+            this.setState({ email: email });
+            if (!email.match(emailRegExp)) {
+                this.setState({ errors: { email: "Please Enter Valid Email" } });
+            } else {
+                this.setState({ errors: { username: "" } });
+            }
+        }
+    }, {
+        key: "onPasswordChange",
+        value: function onPasswordChange(e) {
+            var repass = /\w{5}\d{2}[!@#$%&]{1}/;
+            var password = e.target.value;
+            this.setState({ password: password });
+            if (!password.match(repass)) {
+                this.setState({ errors: { password: "Please Enter Valid password" } });
+            } else {
+                this.setState({ errors: { password: "" } });
+            }
+        }
+    }, {
         key: "onAddLogin",
         value: function onAddLogin(e) {
-
-            var rename = new RegExp('/w{4,}d{2}[!,@,#,$,%,&]{1}/');
-
-            var emailRegex = new RegExp('/w{4,}d{2}[!,@,#,$,%,&]{1}/');
-
-            var repass = new RegExp('/\w{4,}\d{2}[!,@,#,$,%,&]{1}/');
-
             var _state = this.state,
                 username = _state.username,
                 email = _state.email,
@@ -9983,38 +10012,8 @@ var Login = function (_Component) {
 
 
             if (name.match(rename) && this.email.match(emailRegex) && password.match(repass)) {
-                alert("tochni e");
-            } else alert("ERROR!!!!!!");
-        }
-    }, {
-        key: "onUserNameChange",
-        value: function onUserNameChange(e) {
-            var name = e.target.value;
-            this.setState({ username: name });
-            console.log(name);
-            if (name == "") {
-                this.setState({ errors: { username: 'lracnel' } });
-            }
-        }
-    }, {
-        key: "onEmailChange",
-        value: function onEmailChange(e) {
-            var email = e.target.value;
-            this.setState({ email: email });
-            console.log(email);
-            if (email == "") {
-                this.setState({ errors: { email: 'lracnel' } });
-            }
-        }
-    }, {
-        key: "onPasswordChange",
-        value: function onPasswordChange(e) {
-            var password = e.target.value;
-            this.setState({ password: password });
-            console.log(password);
-            if (password == "") {
-                this.setState({ errors: { password: 'lracnel' } });
-            }
+                alert("it/'s ok");
+            } else alert("ERROR!!!!!!Please Enter Valid Data");
         }
     }, {
         key: "render",
@@ -10026,9 +10025,11 @@ var Login = function (_Component) {
                 { className: "loginform" },
                 _react2.default.createElement("input", { type: "text",
                     placeholder: "username",
-                    onBlur: function onBlur(e) {
+                    onChange: function onChange(e) {
                         return _this2.onUserNameChange(e);
                     } }),
+                " ",
+                _react2.default.createElement("br", null),
                 _react2.default.createElement(
                     "span",
                     null,
@@ -10038,9 +10039,11 @@ var Login = function (_Component) {
                 _react2.default.createElement("br", null),
                 _react2.default.createElement("input", { type: "text",
                     placeholder: "email",
-                    onBlur: function onBlur(e) {
+                    onChange: function onChange(e) {
                         return _this2.onEmailChange(e);
                     } }),
+                " ",
+                _react2.default.createElement("br", null),
                 _react2.default.createElement(
                     "span",
                     null,
@@ -10051,15 +10054,17 @@ var Login = function (_Component) {
                 _react2.default.createElement("input", { type: "password",
                     placeholder: "password",
                     maxLength: "12",
-                    onBlur: function onBlur(e) {
+                    onChange: function onChange(e) {
                         return _this2.onPasswordChange(e);
                     } }),
+                _react2.default.createElement("br", null),
                 _react2.default.createElement(
                     "span",
                     null,
                     this.state.errors.password,
                     " "
                 ),
+                _react2.default.createElement("br", null),
                 _react2.default.createElement(
                     "button",
                     { onClick: this.onAddLogin.bind(this) },

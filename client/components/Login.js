@@ -18,27 +18,17 @@ class Login extends Component {
 
     }
 
-    onAddLogin(e){
-
-        const rename =  new RegExp('/w{4,}d{2}[!,@,#,$,%,&]{1}/');
-
-        const emailRegExp =  /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-
-        const  repass =  new RegExp('/\w{4,}\d{2}[!,@,#,$,%,&]{1}/');
-
-        const {username,email,password} = this.state;
-
-        if(name.match(rename) && this.email.match(emailRegex) && password.match(repass)){alert("tochni e")
-            } else alert("ERROR!!!!!!")
-    }
 
 
     onUserNameChange(e){
+        const rename =  /^[a-z0-9_-]{8}$/;
         var name = e.target.value;
         this.setState({username:name})
-        console.log(name)
-        if(name == ""){ this.setState({errors:{username:'lracnel'}})}
-    }
+        if(!name.match(rename)){
+            this.setState({errors:{username:"Please Enter Valid username"}});
+        }else {
+            this.setState({errors:{email:""}});
+        }    }
 
 
     onEmailChange(e){
@@ -48,39 +38,51 @@ class Login extends Component {
         if(!email.match(emailRegExp)){
             this.setState({errors:{email:"Please Enter Valid Email"}});
         }else {
-            this.setState({errors:{email:""}});
-        }
+            this.setState({errors:{username:""}});
+              }
 
         }
 
     onPasswordChange(e){
+        const  repass = /\w{5}\d{2}[!@#$%&]{1}/;
         var password = e.target.value;
         this.setState({password:password})
-        console.log(password)
-            if(password == ""){ this.setState({errors:{password:'lracnel'}})}
-
+        if(!password.match(repass)){
+            this.setState({errors:{password:"Please Enter Valid password"}});
+        }else {
+            this.setState({errors:{password:""}});
+        }
             }
+
+
+    onAddLogin(e){
+
+        const {username,email,password} = this.state;
+
+        if(name.match(rename) && this.email.match(emailRegex) && password.match(repass)){alert("it/'s ok")
+        } else alert("ERROR!!!!!!Please Enter Valid Data")
+    }
 
     render(){
         return (
             <form className = 'loginform'>
                 <input type="text"
                        placeholder="username"
-                       onBlur = {(e) => this.onUserNameChange(e)}/>
+                       onChange = {(e) => this.onUserNameChange(e)}/> <br/>
             <span>{this.state.errors.username} </span>
 
         <br/>
                 <input type="text"
                        placeholder="email"
-                       onChange = {(e) => this.onEmailChange(e)}/>
+                       onChange = {(e) => this.onEmailChange(e)}/> <br/>
         <span>{this.state.errors.email} </span>
 
         <br/>
                 <input type="password"
                        placeholder="password"
                        maxLength="12"
-                       onBlur = {(e) => this.onPasswordChange(e)}/>
-        <span>{this.state.errors.password} </span>
+                       onChange = {(e) => this.onPasswordChange(e)}/><br/>
+            <span>{this.state.errors.password} </span><br/>
 
                 <button onClick = {this.onAddLogin.bind(this)}>Submit </button>
 

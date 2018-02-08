@@ -4,8 +4,8 @@ body {
 
 .loginform {
     background-color: chartreuse;
-    width: 416px;
-    height: 180px;
+    width: 480px;
+    height: 280px;
     margin-top: 30px;
     margin-left: 429px;
     padding-top: 40px;
@@ -27,3 +27,7 @@ body {
     font-size: 22px;
     border-radius: 41px;
     margin-left: 105px;}
+
+span {
+    color:red
+}
